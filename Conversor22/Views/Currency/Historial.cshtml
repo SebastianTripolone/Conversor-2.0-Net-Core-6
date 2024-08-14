@@ -1,0 +1,29 @@
+﻿@model List<Conversor22.Models.Conversion>
+
+<form method="post" action="@Url.Action("LimpiarHistorial", "Currency")">
+    <button type="submit" class="btn btn-danger">Limpiar Historial</button>
+</form>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Monto</th>
+            <th>De</th>
+            <th>Calculado</th>
+            <th>A</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var conversion in Model)
+        {
+            <tr>
+                <td>@conversion.Amount</td>
+                <td>@conversion.FromCurrency</td>
+                <td>@string.Format("{0:N2}", conversion.Result)</td>
+                <td>@conversion.ToCurrency</td>
+                <td>@conversion.Date.ToString("dd/MM/yyyy HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>
